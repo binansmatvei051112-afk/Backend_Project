@@ -1,0 +1,97 @@
+:root {
+    --bg-color: #f0f2f5;
+    --container-bg: #ffffff;
+    --text-color: #333333;
+    --border-color: #eeeeee;
+    --header-border: #f8f9fa;
+}
+
+[data-theme="dark"] {
+    --bg-color: #1a1a1a;
+    --container-bg: #2d2d2d;
+    --text-color: #e0e0e0;
+    --border-color: #404040;
+    --header-border: #333333;
+}
+
+body { 
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; 
+    background: var(--bg-color);
+    padding: 20px; 
+    color: var(--text-color);
+    margin: 0;
+    transition: background 0.3s, color 0.3s;
+}
+
+.container { 
+    max-width: 900px; 
+    margin: 20px auto; 
+    background: var(--container-bg); 
+    padding: 30px; 
+    border-radius: 12px; 
+    box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+}
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+            padding-bottom: 20px;
+            border-bottom: 2px solid #f8f9fa;
+        }
+        
+        .logo { text-decoration: none; color: #2c3e50; }
+        h1 { margin: 0; font-size: 24px; }
+        
+        .nav-buttons { display: flex; gap: 12px; }
+
+        .btn {
+            text-decoration: none;
+            padding: 10px 20px;
+            border-radius: 8px;
+            font-weight: 600;
+            transition: all 0.2s ease;
+            font-size: 14px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .btn-home { background-color: #ecf0f1; color: #7f8c8d; }
+        .btn-home:hover { background-color: #bdc3c7; color: #2c3e50; }
+
+        .btn-add { background-color: #00b894; color: white; }
+        .btn-add:hover { background-color: #009476; transform: translateY(-1px); }
+
+        /* Цвета для графиков и цен */
+        .up { color: #27ae60; font-weight: bold; }
+        .down { color: #e74c3c; font-weight: bold; }
+        
+        main { min-height: 300px; }
+        
+        footer {
+            margin-top: 40px;
+            padding-top: 20px;
+            border-top: 1px solid #eee;
+            font-size: 13px;
+            color: #bdc3c7;
+            text-align: center;
+        }
+.ui-icon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 24px;
+    height: 24px;
+    background: #f8f9fa;
+    border-radius: 6px;
+    margin-right: 8px;
+    font-size: 14px;
+    vertical-align: middle;
+    filter: grayscale(0.3);
+}
+
+.btn:hover .ui-icon {
+    filter: grayscale(0);
+    background: rgba(255,255,255,0.2);
+}

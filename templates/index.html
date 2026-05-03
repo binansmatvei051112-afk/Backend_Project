@@ -1,0 +1,47 @@
+{% extends "base.html" %}
+
+{% block title %}Главная - Портфель{% endblock %}
+
+{% block content %}
+<div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px;">
+    <h2 style="margin: 0;"><i class="fa-solid fa-chart-line"></i> Ваши активы</h2>
+    <span style="color: #7f8c8d; font-size: 14px;">Валюта: RUB</span>
+</div>
+
+{% if crypto_data %}
+<table style="width: 100%; border-collapse: collapse; margin-top: 10px;">
+    <thead>
+        <tr style="background-color: #f8f9fa; text-align: left; border-bottom: 2px solid #eee;">
+            <th style="padding: 12px;">Монета</th>
+            <th style="padding: 12px;">Цена</th>
+            <th style="padding: 12px;">Кол-во</th>
+            <th style="padding: 12px;">Всего (₽)</th>
+            <th style="padding: 12px;">24ч %</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for coin, info in crypto_data.items() %}
+        <tr style="border-bottom: 1px solid #eee;">
+            <td style="padding: 12px;"><strong>{{ coin.capitalize() }}</strong></td>
+
+            <td style="padding: 12px;">{{ "{:,.2f}".format(info.rub | default(0)) }} ₽</td>
+
+            <td style="padding: 12px;">{{ info.amount | default(0) }}</td>
+
+            <td style="padding: 12px; font-weight: 600;">
+                {{ "{:,.2f}".format(info.total | default(0)) }} ₽
+            </td>
+
+            <td style="padding: 12px;" class="{{ 'up' if (info.rub_24h_change | default(0)) > 0 else 'down' }}">
+                {{ "%.2f"|format(info.rub_24h_change | default(0)) }}%
+            </td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% else %}
+<div style="padding: 20px; background: #fff5f5; color: #c0392b; border-radius: 8px; margin-top: 20px;">
+    ⚠️ Не удалось получить данные от биржи. Пожалуйста, подождите минуту и обновите страницу.
+</div>
+{% endif %}
+{% endblock %}

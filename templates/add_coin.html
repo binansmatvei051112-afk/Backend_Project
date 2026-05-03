@@ -1,0 +1,48 @@
+{% extends "base.html" %}
+
+{% block title %}Добавить актив - CryptoTracker{% endblock %}
+
+{% block content %}
+<div style="max-width: 450px; margin: 0 auto; padding: 30px; background: white; border-radius: 12px; box-shadow: 0 4px 15px rgba(0,0,0,0.08);">
+    <h2 style="margin-top: 0; color: #2c3e50;"><i class="fa-solid fa-plus-circle"></i> Добавить актив</h2>
+    <p style="color: #7f8c8d; font-size: 14px; margin-bottom: 20px;">Выберите криптовалюту из списка и укажите, сколько её у вас.</p>
+
+    <form action="/add" method="post">
+        <div style="margin-bottom: 20px;">
+            <label style="font-weight: bold; display: block; margin-bottom: 8px;">Монета:</label>
+            <select name="coin_id" required style="width: 100%; padding: 10px; border: 1px solid #ddd; border-radius: 8px; font-size: 15px; background-color: #f8f9fa;">
+                <option value="" disabled selected>-- Выберите монету --</option>
+                <optgroup label="Основные">
+                    <option value="bitcoin">Bitcoin (BTC)</option>
+                    <option value="ethereum">Ethereum (ETH)</option>
+                    <option value="tether">Tether (USDT)</option>
+                    <option value="solana">Solana (SOL)</option>
+                    <option value="binancecoin">BNB (BNB)</option>
+                </optgroup>
+                <optgroup label="Альткоины">
+                    <option value="ripple">XRP (XRP)</option>
+                    <option value="dogecoin">Dogecoin (DOGE)</option>
+                    <option value="cardano">Cardano (ADA)</option>
+                    <option value="the-open-network">Toncoin (TON)</option>
+                    <option value="avalanche-2">Avalanche (AVAX)</option>
+                    <option value="polkadot">Polkadot (DOT)</option>
+                    <option value="shiba-inu">Shiba Inu (SHIB)</option>
+                    <option value="litecoin">Litecoin (LTC)</option>
+                    <option value="matic-network">Polygon (MATIC)</option>
+                    <option value="tron">TRON (TRX)</option>
+                </optgroup>
+            </select>
+        </div>
+        
+        <div style="margin-bottom: 25px;">
+            <label style="font-weight: bold; display: block; margin-bottom: 8px;">Количество:</label>
+            <input type="number" name="amount" step="any" min="0" placeholder="Например: 0.5" required style="width: 100%; padding: 10px; border: 1px solid #ddd; border-radius: 8px; font-size: 15px; box-sizing: border-box;">
+        </div>
+        
+        <div style="display: flex; gap: 10px;">
+            <a href="/" style="flex: 1; text-align: center; padding: 12px; border-radius: 8px; background-color: #ecf0f1; color: #7f8c8d; text-decoration: none; font-weight: bold;">Отмена</a>
+            <button type="submit" style="flex: 2; background: #00b894; color: white; border: none; padding: 12px; border-radius: 8px; font-weight: bold; font-size: 15px; cursor: pointer;">Сохранить в портфель</button>
+        </div>
+    </form>
+</div>
+{% endblock %}

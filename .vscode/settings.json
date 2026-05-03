@@ -1,0 +1,8 @@
+{
+    "python.analysis.typeEvaluation.strictParameterNoneValue": false,
+    "python.analysis.typeEvaluation.enableTypeIgnoreComments": false,
+    "python.analysis.persistAllIndices": true,
+    "python.analysis.diagnosticMode": "openFilesOnly",
+    "python.analysis.enablePytestSupport": false,
+    "python.analysis.diagnosticsSource": "Pyright"
+}

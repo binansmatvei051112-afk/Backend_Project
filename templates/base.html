@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}CryptoTracker{% endblock %}</title>
+    <link href="{{ url_for('static', path='/style.css') }}" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <a href="/" class="logo"><h1>CryptoTracker</h1></a>
+            <nav class="nav-buttons">
+                <button id="theme-toggle" class="btn btn-home" style="cursor: pointer;">
+                    <i id="theme-icon" class="fa-solid fa-moon"></i>
+                </button>
+                <a href="/" class="btn btn-home">
+                    <i class="fa-solid fa-house" style="margin-right: 8px;"></i>Главная
+                </a>
+                <a href="/add" class="btn btn-add">
+                    <i class="fa-solid fa-circle-plus" style="margin-right: 8px;"></i>Добавить монету
+                </a>
+            </nav>
+        </header>
+
+        <main>
+            {% block content %}{% endblock %}
+        </main>
+        
+        <footer>
+            | Данные CoinGecko API
+        </footer>
+    </div>
+
+    <script>
+        const btn = document.getElementById("theme-toggle");
+        const icon = document.getElementById("theme-icon");
+
+        if (localStorage.getItem("theme") === "dark") {
+            document.documentElement.setAttribute("data-theme", "dark");
+            icon.classList.replace("fa-moon", "fa-sun");
+        }
+
+        btn.addEventListener("click", () => {
+            let theme = document.documentElement.getAttribute("data-theme");
+            
+            if (theme === "dark") {
+                document.documentElement.removeAttribute("data-theme");
+                localStorage.setItem("theme", "light");
+                icon.classList.replace("fa-sun", "fa-moon");
+            } else {
+                document.documentElement.setAttribute("data-theme", "dark");
+                localStorage.setItem("theme", "dark");
+                icon.classList.replace("fa-moon", "fa-sun");
+            }
+        });
+    </script>
+</body>
+</html>
