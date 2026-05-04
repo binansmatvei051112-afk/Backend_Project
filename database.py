@@ -14,7 +14,8 @@ def get_db_connection():
         CREATE TABLE IF NOT EXISTS Users (
             id INTEGER PRIMARY KEY AUTOINCREMENT,
             Login TEXT UNIQUE NOT NULL,
-            Password TEXT NOT NULL
+            Password TEXT NOT NULL,
+            is_admin INTEGER DEFAULT 0
         )
     """)
     conn.execute("""
@@ -26,6 +27,11 @@ def get_db_connection():
             FOREIGN KEY (user_id) REFERENCES Users (id) ON DELETE CASCADE
         )
     """)
+    try:
+        conn.execute("ALTER TABLE Users ADD COLUMN is_admin INTEGER DEFAULT 0")
+        conn.commit()
+    except:
+        pass
     conn.commit()
     return conn
 

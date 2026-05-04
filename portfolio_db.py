@@ -28,7 +28,7 @@ def get_db_connection():
     return conn
 
 async def get_user_portfolio(user_id: int) -> dict[str, float]:
-    
+
     conn = get_db_connection()
     cursor = conn.cursor()
     cursor.execute("SELECT coin_id, amount FROM Portfolio WHERE user_id = ?", (user_id,))
@@ -38,21 +38,18 @@ async def get_user_portfolio(user_id: int) -> dict[str, float]:
         portfolio[row["coin_id"]] = row["amount"]
     return portfolio
 
-
-# ------------------------------------------------------------
-# 2. Добавить или обновить актив
-# ------------------------------------------------------------
 async def add_or_update_asset(user_id: int, coin_id: str, amount: float):
-
     conn = get_db_connection()
     cursor = conn.cursor()
+    
     cursor.execute(
         "SELECT id, amount FROM Portfolio WHERE user_id = ? AND coin_id = ?",
         (user_id, coin_id)
     )
     existing = cursor.fetchone()
+    
     if existing:
-        new_amount = amount
+        new_amount = existing["amount"] + amount 
         cursor.execute(
             "UPDATE Portfolio SET amount = ? WHERE id = ?",
             (new_amount, existing["id"])
