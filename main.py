@@ -78,6 +78,9 @@ async def home(request: Request):
                 coin_total = data[coin].get('rub', 0) * amount
                 data[coin]['total'] = coin_total
                 total_balance += coin_total
+    
+    print(f"DEBUG: Coins from DB: {coin_ids}")
+    print(f"DEBUG: Data from API: {data}")
 
     return templates.TemplateResponse(
         request=request,
