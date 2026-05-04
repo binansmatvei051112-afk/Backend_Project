@@ -1,10 +1,7 @@
 import requests
 
 def get_crypto_data(coin_ids: list[str]):
-    """
-    Запрашивает текущие цены и изменения за 24 часа у CoinGecko.
-    coin_ids: список названий монет, например ['bitcoin', 'ethereum', 'solana']
-    """
+    
     url = "https://api.coingecko.com/api/v3/simple/price"
     
     params = {
