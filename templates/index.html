@@ -9,6 +9,10 @@
 </div>
 
 {% if crypto_data %}
+<div style="background: #00b894; color: white; padding: 20px; border-radius: 12px; margin-bottom: 30px; text-align: center;">
+    <h3 style="margin: 0; font-size: 16px; opacity: 0.9;">Общий баланс</h3>
+    <div style="font-size: 32px; font-weight: bold;">{{ "{:,.2f}".format(total_balance | default(0)) }} ₽</div>
+</div>
 <table style="width: 100%; border-collapse: collapse; margin-top: 10px;">
     <thead>
         <tr style="background-color: #f8f9fa; text-align: left; border-bottom: 2px solid #eee;">
@@ -17,6 +21,7 @@
             <th style="padding: 12px;">Кол-во</th>
             <th style="padding: 12px;">Всего (₽)</th>
             <th style="padding: 12px;">24ч %</th>
+            <th style="padding: 12px;">Действие</th>
         </tr>
     </thead>
     <tbody>
@@ -34,6 +39,12 @@
 
             <td style="padding: 12px;" class="{{ 'up' if (info.rub_24h_change | default(0)) > 0 else 'down' }}">
                 {{ "%.2f"|format(info.rub_24h_change | default(0)) }}%
+            </td>
+            <td style="padding: 12px;">
+                <a href="/delete/{{ coin }}" style="color: #e74c3c; text-decoration: none;" 
+                onclick="return confirm('Удалить эту монету из портфеля?')">
+                    <i class="fa-solid fa-trash-can"></i>
+                </a>
             </td>
         </tr>
         {% endfor %}

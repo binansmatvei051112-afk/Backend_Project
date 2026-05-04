@@ -21,6 +21,7 @@
                 <a href="/add" class="btn btn-add">
                     <i class="fa-solid fa-circle-plus" style="margin-right: 8px;"></i>Добавить монету
                 </a>
+                <a href="/logout" class="btn" style="background: #e74c3c; color: white;">Выйти</a>
             </nav>
         </header>
 
@@ -54,6 +55,14 @@
                 localStorage.setItem("theme", "dark");
                 icon.classList.replace("fa-moon", "fa-sun");
             }
+        });
+        const passwordInput = document.getElementById('password-input');
+        const toggleIcon = document.getElementById('toggle-password');
+
+        toggleIcon.addEventListener('click', () => {
+            const type = passwordInput.getAttribute('type') === 'password' ? 'text' : 'password';
+            passwordInput.setAttribute('type', type);
+            toggleIcon.classList.toggle('fa-eye-slash');
         });
     </script>
 </body>
